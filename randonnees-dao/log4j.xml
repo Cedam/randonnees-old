@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <Configuration>
+ 
+  <Appenders>
+   <Console name="STDOUT" target="SYSTEM_OUT">
+    <PatternLayout pattern="%d - %-5p - %C{2}:%L - %m%n"/>
+   </Console>
+   <File name="fileOut" fileName="C:\\SimpleJavaProject.log">
+    <PatternLayout pattern="%d - %-5p - %C{2}:%L - %m%n"/>
+   </File>        
+  </Appenders>
+  
+  <Loggers>
+   <Logger name="org.apache.log4j.xml" level="info"/>
+   <Root level="debug">
+    <AppenderRef ref="STDOUT"/>
+    <AppenderRef ref="fileOut"/>
+   </Root>
+  </Loggers>
+  
+ </Configuration>
