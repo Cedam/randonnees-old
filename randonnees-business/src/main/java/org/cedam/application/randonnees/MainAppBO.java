@@ -1,22 +1,48 @@
 package org.cedam.application.randonnees;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.cedam.application.randonnees.business.ArticleBO;
+import org.cedam.application.randonnees.dao.config.AppConfig;
 import org.cedam.application.randonnees.dao.utils.HibernateUtil;
+import org.cedam.application.randonnees.entity.Article;
 import org.cedam.application.randonnees.entity.Department;
 import org.cedam.application.randonnees.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-/**
- * @author imssbora
- */
-public class OneToManyDemo {
+public class MainAppBO {
+
+	private static final Logger logger = LogManager.getLogger(MainAppBO.class);
+
 	public static void main(String[] args) {
+		logger.error("MainApp : init");
+		testArticleService();
+		//oneToMany();
+	}
+
+	public static void testArticleService() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+
+		ArticleBO articleBo = context.getBean(ArticleBO.class);
+
+		Article article = context.getBean(Article.class);
+		//Article article = new Article();
+		article.setName("ss");
+		articleBo.add(article);
+		
+		
+		context.close();
+	}
+
+	public static void oneToMany() {
 		Session session = null;
 		Transaction transaction = null;
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			//transaction.begin();
+			// transaction.begin();
 
 			Department department = new Department();
 			department.setName("IT Department");
@@ -56,4 +82,5 @@ public class OneToManyDemo {
 
 		HibernateUtil.shutdown();
 	}
+
 }

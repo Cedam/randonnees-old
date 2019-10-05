@@ -9,27 +9,30 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @author imssbora
  */
+@Component
 @Entity
 @Table(name = "EMPLOYEE")
 public class Employee {
 
-	   @Id
-	   @GeneratedValue(strategy = GenerationType.IDENTITY)
-	   @Column(name = "EMP_ID")
-	   private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "EMP_ID")
+	private long id;
 
-	   @Column(name = "NAME", nullable = false)
-	   private String name;
+	@Column(name = "NAME", nullable = false)
+	private String name;
 
-	   @Column(name = "DESIGNATION")
-	   private String designation;
+	@Column(name = "DESIGNATION")
+	private String designation;
 
-	   @ManyToOne
-	   @JoinColumn(name = "DPT_ID")
-	   private Department department;
+	@ManyToOne
+	@JoinColumn(name = "DPT_ID")
+	private Department department;
 
 	public long getId() {
 		return id;
@@ -62,8 +65,5 @@ public class Employee {
 	public void setDepartment(Department department) {
 		this.department = department;
 	}
-	   
-	   
-	   
 
 }

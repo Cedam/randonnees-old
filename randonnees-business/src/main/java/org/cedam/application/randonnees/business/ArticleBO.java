@@ -6,7 +6,7 @@ import org.cedam.application.randonnees.entity.Article;
 
 
 
-public interface ArticleService {
+public interface ArticleBO {
 	
 	Article getById(Long id);
 	

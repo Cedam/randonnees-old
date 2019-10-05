@@ -8,14 +8,11 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-/**
- * @author imssbora
- *
- */
+
 @Configuration
 @EnableTransactionManagement
-@ComponentScans(value = { @ComponentScan("org.cedam.application.randonnees")/*,
-      @ComponentScan("org.cedam.application.randonnees.service") */})
+@ComponentScans(value = { @ComponentScan("org.cedam.application.randonnees.dao")/*,
+      @ComponentScan("org.cedam.application.randonnees.entity")*/ })
 public class AppConfig {
 
    @Bean

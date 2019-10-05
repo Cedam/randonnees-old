@@ -14,24 +14,27 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-/**
- * @author imssbora
- */
 @Component
 @Entity
-@Table(name = "DEPARTMENT")
-public class Department {
+@Table(name = "TREK")
+public class Trek {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "DPT_ID")
+	@Column(name = "ID")
 	private long id;
 
 	@Column(name = "NAME", nullable = false, unique = false)
 	private String name;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
-	private List<Employee> employees = new ArrayList<Employee>();
+	@Column(name = "YEAR", nullable = false, unique = false)
+	private int year;
+
+	@Column(name = "LOCATION", nullable = false, unique = false)
+	private String location;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "trek")
+	private List<Day> days = new ArrayList<Day>();
 
 	public long getId() {
 		return id;
@@ -49,12 +52,28 @@ public class Department {
 		this.name = name;
 	}
 
-	public List<Employee> getEmployees() {
-		return employees;
+	public int getYear() {
+		return year;
 	}
 
-	public void setEmployees(List<Employee> employees) {
-		this.employees = employees;
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public List<Day> getDays() {
+		return days;
+	}
+
+	public void setDays(List<Day> days) {
+		this.days = days;
 	}
 
 }
