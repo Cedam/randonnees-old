@@ -3,7 +3,8 @@ package org.cedam.application.randonnees.dao;
 import java.util.List;
 
 import org.cedam.application.randonnees.dao.config.AppConfig;
-import org.cedam.application.randonnees.entity.Article;
+import org.cedam.application.randonnees.entity.Day;
+import org.cedam.application.randonnees.entity.Trek;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -20,10 +21,10 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = AppConfig.class)
 @SpringBootTest
-public class ArticleDaoTest {
+public class TrekDaoTest {
 
 	@Autowired
-	private ArticleDao object;
+	private TrekDao object;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -43,34 +44,38 @@ public class ArticleDaoTest {
 
 	@Test
 	@Transactional
-	public void testListArticles() {
-		List<Article> listArticles = object.listArticles();
-		Assert.assertNotNull(listArticles);
+	public void testListTreks() {
+		List<Trek> listTreks = object.listTreks();
+		Assert.assertNotNull(listTreks);
 	}
 
 	@Test
 	@Transactional
 	public void testAdd() {
-		int numberBefore = object.listArticles().size();
-		Article articleA = new Article();
-		articleA.setName("testA");
+		int numberBefore = object.listTreks().size();
+		Trek trekA = new Trek();
+		trekA.setName("testA");
 
-		object.add(articleA);
+		object.add(trekA);
 
-		Assert.assertTrue(++numberBefore == object.listArticles().size());
+		Assert.assertTrue(++numberBefore == object.listTreks().size());
 	}
 
 	@Test
 	@Transactional
 	public void testGetById() {
-		List<Article> listeArticles = object.listArticles();
-		Article article = object.getById(listeArticles.get(0).getId());
-		Assert.assertNotNull(article);
-		Assert.assertEquals(listeArticles.get(0).getId(), article.getId());
-
-		Article article2 = object.getById(listeArticles.get(0).getId() + 1);
-		Assert.assertNotNull(article2);
-		Assert.assertNotEquals(listeArticles.get(0).getId(), article2.getId());
+		List<Trek> listeTreks = object.listTreks();
+		Trek trek = object.getById(listeTreks.get(0).getId());
+		Assert.assertNotNull(trek);
+		Assert.assertEquals(listeTreks.get(0).getId(), trek.getId());
+		
+		Trek trek2 = object.getById(listeTreks.get(0).getId()+1);
+		Assert.assertNotNull(trek2);
+		Assert.assertNotEquals(listeTreks.get(0).getId(), trek2.getId());
+		
+		for (Day day : trek.getDays()) {
+			Assert.assertNotNull(day);
+		}
 	}
 
 }

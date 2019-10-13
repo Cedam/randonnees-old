@@ -5,22 +5,33 @@ import org.apache.logging.log4j.Logger;
 import org.cedam.application.randonnees.dao.config.AppConfig;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootApplication
 public class MainAppDao {
 
 	private static final Logger logger = LogManager.getLogger(MainAppDao.class);
-	
-	
+
+	@Transactional
 	public static void main(String[] args) {
-		//SpringApplication.run(MainAppDao.class, args);
-	      AnnotationConfigApplicationContext context = 
-	              new AnnotationConfigApplicationContext(AppConfig.class);
-	      
-	      
-	      context.close();
+		// SpringApplication.run(MainAppDao.class, args);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+		
+		logger.debug("Debut Main");
+
+		/*TrekDao trekDao = context.getBean(TrekDao.class);
+		Trek trekA = new Trek();
+		trekA.setName("testA");
+		trekDao.add(trekA);*/
+		
+		
+//		TrekDao object = context.getBean(TrekDao.class);
+//		Trek trek = object.getById((long) 1);
+//		for (Day day : trek.getDays()) {
+//			logger.debug(day.getId());
+//		}
+
+		context.close();
 	}
 
 }

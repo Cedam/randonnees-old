@@ -33,6 +33,7 @@ public class Department {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
 	private List<Employee> employees = new ArrayList<Employee>();
 
+	
 	public long getId() {
 		return id;
 	}

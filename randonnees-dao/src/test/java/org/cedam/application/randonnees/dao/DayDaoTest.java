@@ -3,7 +3,7 @@ package org.cedam.application.randonnees.dao;
 import java.util.List;
 
 import org.cedam.application.randonnees.dao.config.AppConfig;
-import org.cedam.application.randonnees.entity.Article;
+import org.cedam.application.randonnees.entity.Day;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -20,10 +20,10 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = AppConfig.class)
 @SpringBootTest
-public class ArticleDaoTest {
+public class DayDaoTest {
 
 	@Autowired
-	private ArticleDao object;
+	private DayDao object;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -43,34 +43,34 @@ public class ArticleDaoTest {
 
 	@Test
 	@Transactional
-	public void testListArticles() {
-		List<Article> listArticles = object.listArticles();
-		Assert.assertNotNull(listArticles);
+	public void testListDays() {
+		List<Day> listDays = object.listDays();
+		Assert.assertNotNull(listDays);
 	}
 
 	@Test
 	@Transactional
 	public void testAdd() {
-		int numberBefore = object.listArticles().size();
-		Article articleA = new Article();
-		articleA.setName("testA");
+		int numberBefore = object.listDays().size();
+		Day dayA = new Day();
+		dayA.setName("testA");
 
-		object.add(articleA);
+		object.add(dayA);
 
-		Assert.assertTrue(++numberBefore == object.listArticles().size());
+		Assert.assertTrue(++numberBefore == object.listDays().size());
 	}
 
 	@Test
 	@Transactional
 	public void testGetById() {
-		List<Article> listeArticles = object.listArticles();
-		Article article = object.getById(listeArticles.get(0).getId());
-		Assert.assertNotNull(article);
-		Assert.assertEquals(listeArticles.get(0).getId(), article.getId());
+		List<Day> listeDays = object.listDays();
+		Day day = object.getById(listeDays.get(0).getId());
+		Assert.assertNotNull(day);
+		Assert.assertEquals(listeDays.get(0).getId(), day.getId());
 
-		Article article2 = object.getById(listeArticles.get(0).getId() + 1);
-		Assert.assertNotNull(article2);
-		Assert.assertNotEquals(listeArticles.get(0).getId(), article2.getId());
+		Day day2 = object.getById(listeDays.get(0).getId() + 1);
+		Assert.assertNotNull(day2);
+		Assert.assertNotEquals(listeDays.get(0).getId(), day2.getId());
 	}
 
 }

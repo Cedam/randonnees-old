@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
 <Configuration status="WARN" monitorInterval="30">
 	<Properties>
 		<Property name="LOG_PATTERN">%d{yyyy-MM-dd'T'HH:mm:ss} %p %m%n</Property>
@@ -20,13 +21,13 @@
 	</Appenders>
 	<Loggers>
 		<!-- all-trace-debug-info-warn-error-fatal-off -->
-		<Logger name="org.cedam.application.randonnees.dao" additivity="false">
-			<level>info</level>
-			<AppenderRef ref="Console" />
-			<AppenderRef ref="appLog" />
-		</Logger>
+<!-- 		<Logger name="org.cedam.application.randonnees.dao" additivity="false"> -->
+<!-- 			<level>ERROR</level> -->
+<!-- 			<AppenderRef ref="Console" /> -->
+<!-- 			<AppenderRef ref="appLog" /> -->
+<!-- 		</Logger> -->
 
-		<Root level="info">
+		<Root level="INFO">
 			<AppenderRef ref="Console" />
 			<AppenderRef ref="appLog" />
 		</Root>

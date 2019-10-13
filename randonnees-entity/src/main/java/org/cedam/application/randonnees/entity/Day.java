@@ -25,7 +25,7 @@ public class Day {
 	private String number;
 
 	@ManyToOne
-	@JoinColumn(name = "ID")
+	@JoinColumn(name = "TREK_ID")
 	private Trek trek;
 
 	public long getId() {
