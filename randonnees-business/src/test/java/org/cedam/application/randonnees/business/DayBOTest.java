@@ -1,4 +1,4 @@
-package org.cedam.application.randonnees.dao;
+package org.cedam.application.randonnees.business;
 
 import java.util.List;
 
@@ -20,10 +20,10 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = AppConfig.class)
 @SpringBootTest
-public class DayDaoTest {
+public class DayBOTest {
 
 	@Autowired
-	private DayDao object;
+	private DayBO object;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -42,7 +42,6 @@ public class DayDaoTest {
 	}
 
 	@Test
-	@Transactional
 	public void testGetById() {
 		List<Day> listeDays = object.listDays();
 		Day day = object.getById(listeDays.get(0).getId());
@@ -56,7 +55,6 @@ public class DayDaoTest {
 
 	
 	@Test
-	@Transactional
 	public void testListDays() {
 		List<Day> listDays = object.listDays();
 		Assert.assertNotNull(listDays);
@@ -64,7 +62,6 @@ public class DayDaoTest {
 
 	
 	@Test
-	@Transactional
 	public void testInsert() {
 		int numberBefore = object.listDays().size();
 		Day dayA = new Day();

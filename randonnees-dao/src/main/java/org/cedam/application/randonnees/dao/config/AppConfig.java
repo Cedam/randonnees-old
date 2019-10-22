@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScans(value = { @ComponentScan("org.cedam.application.randonnees.dao")/*,
+@ComponentScans(value = { @ComponentScan("org.cedam.application.randonnees.dao"), @ComponentScan("org.cedam.application.randonnees.business")/*,
       @ComponentScan("org.cedam.application.randonnees.entity")*/ })
 public class AppConfig {
 

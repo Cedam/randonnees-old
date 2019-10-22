@@ -5,13 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
-
-@Component
 @Entity
 @Table(name = "DAY")
 public class Day {
@@ -24,9 +19,9 @@ public class Day {
 	@Column(name = "NUMBER", nullable = false, unique = false)
 	private String number;
 
-	@ManyToOne
-	@JoinColumn(name = "TREK_ID")
-	private Trek trek;
+	//@ManyToOne(cascade = CascadeType.MERGE)
+	//@JoinColumn(name = "TREK_ID")
+	//private Trek trek;
 
 	public long getId() {
 		return id;
@@ -36,11 +31,11 @@ public class Day {
 		this.id = id;
 	}
 
-	public String getName() {
+	public String getNumber() {
 		return number;
 	}
 
-	public void setName(String number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 

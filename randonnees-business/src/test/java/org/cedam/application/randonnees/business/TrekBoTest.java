@@ -1,9 +1,8 @@
-package org.cedam.application.randonnees.dao;
+package org.cedam.application.randonnees.business;
 
 import java.util.List;
 
 import org.cedam.application.randonnees.dao.config.AppConfig;
-import org.cedam.application.randonnees.entity.Day;
 import org.cedam.application.randonnees.entity.Trek;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -21,10 +20,10 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = AppConfig.class)
 @SpringBootTest
-public class TrekDaoTest {
+public class TrekBoTest {
 
 	@Autowired
-	private TrekDao object;
+	private TrekBO object;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {

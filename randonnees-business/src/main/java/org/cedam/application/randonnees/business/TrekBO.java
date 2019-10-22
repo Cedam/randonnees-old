@@ -10,6 +10,8 @@ public interface TrekBO {
 
 	List<Trek> listTreks();
 
-	void add(Trek object);
+	void insert(Trek object);
+
+	long update(Trek Trek);
 
 }

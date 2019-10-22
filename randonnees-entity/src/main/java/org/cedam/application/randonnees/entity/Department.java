@@ -12,12 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
-
-/**
- * @author imssbora
- */
-@Component
 @Entity
 @Table(name = "DEPARTMENT")
 public class Department {

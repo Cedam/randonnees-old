@@ -32,8 +32,17 @@ public class DayDaoImp implements DayDao {
 	}
 
 	@Override
-	public void add(Day object) {
+	public void insert(Day object) {
 		em.persist(object);
 	}
+	
+	@Override
+	public long update(Day object) {
+		Day obj = em.merge(object);
+		//ou 
+		//em.flush();
+		return obj.getId();
+	}
+
 
 }

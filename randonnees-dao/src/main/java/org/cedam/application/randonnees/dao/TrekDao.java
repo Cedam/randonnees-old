@@ -10,6 +10,8 @@ public interface TrekDao {
 
 	Trek getById(Long id);
 
-	void add(Trek object);
+	void insert(Trek object);
+
+	long update(Trek object);
 
 }

@@ -9,12 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
 
-/**
- * @author imssbora
- */
-@Component
 @Entity
 @Table(name = "EMPLOYEE")
 public class Employee {

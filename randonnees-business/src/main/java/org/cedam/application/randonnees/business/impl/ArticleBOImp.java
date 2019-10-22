@@ -15,6 +15,7 @@ public class ArticleBOImp implements ArticleBO {
 	@Autowired
 	private ArticleDao articleDao;
 
+	@Transactional
 	@Override
 	public Article getById(Long id) {
 		return articleDao.getById(id);
@@ -25,14 +26,11 @@ public class ArticleBOImp implements ArticleBO {
 	public List<Article> listArticles() {
 		return articleDao.listArticles();
 	}
-	
+
 	@Transactional
 	@Override
-	public void add(Article Article) {
-		articleDao.add(Article);
+	public void insert(Article Article) {
+		articleDao.insert(Article);
 	}
-
-
-
 
 }

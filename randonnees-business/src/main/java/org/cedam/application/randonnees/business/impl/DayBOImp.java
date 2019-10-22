@@ -15,6 +15,7 @@ public class DayBOImp implements DayBO {
 	@Autowired
 	private DayDao dayDao;
 
+	@Transactional
 	@Override
 	public Day getById(Long id) {
 		return dayDao.getById(id);
@@ -28,11 +29,15 @@ public class DayBOImp implements DayBO {
 	
 	@Transactional
 	@Override
-	public void add(Day Day) {
-		dayDao.add(Day);
+	public void insert(Day day) {
+		dayDao.insert(day);
 	}
 
-
+	@Transactional
+	@Override
+	public long update(Day day) {
+		return dayDao.update(day);
+	}
 
 
 }

@@ -3,34 +3,57 @@ package org.cedam.application.randonnees;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.cedam.application.randonnees.business.ArticleBO;
+import org.cedam.application.randonnees.business.DayBO;
 import org.cedam.application.randonnees.dao.config.AppConfig;
 import org.cedam.application.randonnees.dao.utils.HibernateUtil;
 import org.cedam.application.randonnees.entity.Article;
+import org.cedam.application.randonnees.entity.Day;
 import org.cedam.application.randonnees.entity.Department;
 import org.cedam.application.randonnees.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+@SpringBootApplication
 public class MainAppBO {
 
 	private static final Logger logger = LogManager.getLogger(MainAppBO.class);
 
 	public static void main(String[] args) {
 		logger.error("MainApp : init");
-		testArticleService();
+		testDaysService();
+		//testArticleService();
 		//oneToMany();
 	}
 
+	public static void testDaysService() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+
+		DayBO dayBO = context.getBean(DayBO.class);
+
+		
+		dayBO.insert(dayBO.getById((long) 1));
+		
+		Day day= new Day();
+		day.setNumber("cc");
+		day.setId(2);
+		dayBO.insert(day);
+		
+		context.close();
+	}
+
+	
 	public static void testArticleService() {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
 		ArticleBO articleBo = context.getBean(ArticleBO.class);
 
-		Article article = context.getBean(Article.class);
-		//Article article = new Article();
+		//Article article = context.getBean(Article.class);
+		Article article = new Article();
+		
 		article.setName("ss");
-		articleBo.add(article);
+		articleBo.insert(article);
 		
 		
 		context.close();

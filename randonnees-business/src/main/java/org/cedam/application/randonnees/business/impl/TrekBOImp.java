@@ -15,6 +15,7 @@ public class TrekBOImp implements TrekBO {
 	@Autowired
 	private TrekDao trekDao;
 
+	@Transactional
 	@Override
 	public Trek getById(Long id) {
 		return trekDao.getById(id);
@@ -28,11 +29,14 @@ public class TrekBOImp implements TrekBO {
 	
 	@Transactional
 	@Override
-	public void add(Trek Trek) {
-		trekDao.add(Trek);
+	public void insert(Trek Trek) {
+		trekDao.insert(Trek);
 	}
 
-
-
+	@Transactional
+	@Override
+	public long update(Trek Trek) {
+		return trekDao.update(Trek);
+	}
 
 }

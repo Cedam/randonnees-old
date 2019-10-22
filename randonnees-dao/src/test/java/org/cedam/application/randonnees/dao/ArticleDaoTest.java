@@ -55,7 +55,7 @@ public class ArticleDaoTest {
 		Article articleA = new Article();
 		articleA.setName("testA");
 
-		object.add(articleA);
+		object.insert(articleA);
 
 		Assert.assertTrue(++numberBefore == object.listArticles().size());
 	}

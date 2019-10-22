@@ -8,6 +8,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import org.cedam.application.randonnees.dao.TrekDao;
+import org.cedam.application.randonnees.entity.Day;
 import org.cedam.application.randonnees.entity.Trek;
 import org.springframework.stereotype.Repository;
 
@@ -33,8 +34,14 @@ public class TrekDaoImp implements TrekDao {
 	}
 
 	@Override
-	public void add(Trek object) {
+	public void insert(Trek object) {
 		em.persist(object);
 	}
 
+	@Override
+	public long update(Trek object) {
+		Trek obj = em.merge(object);
+		return obj.getId();
+	}
+	
 }

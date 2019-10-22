@@ -10,6 +10,8 @@ public interface DayDao {
 
 	List<Day> listDays();
 
-	void add(Day object);
+	void insert(Day object);
+
+	long update(Day object);
 
 }

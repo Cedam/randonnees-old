@@ -37,7 +37,7 @@ public class ArticleDaoImp implements ArticleDao {
 	}
 
 	@Override
-	public void add(Article object) {
+	public void insert(Article object) {
 		em.persist(object);
 	}
 

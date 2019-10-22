@@ -4,16 +4,12 @@ import java.util.List;
 
 import org.cedam.application.randonnees.entity.Article;
 
-
-
 public interface ArticleBO {
 	
 	Article getById(Long id);
 	
     List<Article> listArticles();
     
-    void add(Article article);
-
-  
+    void insert(Article article);
     
 }

@@ -10,6 +10,6 @@ public interface ArticleDao {
 
 	List<Article> listArticles();
 
-	void add(Article object);
+	void insert(Article object);
 
 }

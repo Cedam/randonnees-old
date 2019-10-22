@@ -14,7 +14,7 @@
 	<artifactId>randonnees-dao</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>randonnees-dao</name>
-	<description>Affichage des randonnees faites</description>
+	<description>DAO-Affichage des randonnees faites</description>
 
 	<properties>
 		<java.version>12</java.version>
