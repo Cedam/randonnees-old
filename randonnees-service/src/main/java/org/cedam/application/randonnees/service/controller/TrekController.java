@@ -5,17 +5,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class AccueilController {
+public class TrekController {
 
-	@RequestMapping("/")
+	@RequestMapping("/trek")
 	@ResponseBody
-	public String welcome() {
-		Boolean a = true;
-		if (a) {
-			return "Futur application randonnées";
-		}
-		
-		return "No futur";
+	public String test() {
+		return "Futur application randonnées : trek";
 	}
 
 }

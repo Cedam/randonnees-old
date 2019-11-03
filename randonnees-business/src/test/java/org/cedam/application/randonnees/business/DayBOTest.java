@@ -2,7 +2,7 @@ package org.cedam.application.randonnees.business;
 
 import java.util.List;
 
-import org.cedam.application.randonnees.dao.config.AppConfig;
+import org.cedam.application.randonnees.business.config.AppConfig;
 import org.cedam.application.randonnees.entity.Day;
 import org.junit.After;
 import org.junit.AfterClass;

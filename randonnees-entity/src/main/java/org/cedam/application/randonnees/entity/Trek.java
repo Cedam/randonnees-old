@@ -25,8 +25,8 @@ public class Trek {
 	@Column(name = "LOCATION", nullable = false, unique = false)
 	private String location;
 
-	//@OneToMany(cascade = CascadeType.ALL, mappedBy = "trek")
-	//private List<Day> days = new ArrayList<Day>();
+	// @OneToMany(cascade = CascadeType.ALL, mappedBy = "trek")
+	// private List<Day> days = new ArrayList<Day>();
 
 	public long getId() {
 		return id;
@@ -60,12 +60,10 @@ public class Trek {
 		this.location = location;
 	}
 
-	/*public List<Day> getDays() {
-		return days;
-	}
-
-	public void setDays(List<Day> days) {
-		this.days = days;
-	}*/
+	/*
+	 * public List<Day> getDays() { return days; }
+	 * 
+	 * public void setDays(List<Day> days) { this.days = days; }
+	 */
 
 }
