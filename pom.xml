@@ -2,39 +2,107 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-	<artifactId>randonnees</artifactId>
-	<description>Projet multi module 'Randonnees'</description>
 	<groupId>org.cedam.application.randonnees</groupId>
-	<modelVersion>4.0.0</modelVersion>
+	<artifactId>randonnees</artifactId>
+	<version>1.0-SNAPSHOT</version>
 	<name>randonnees</name>
+	<description>Projet multi module 'Randonnees'</description>
+	<modelVersion>4.0.0</modelVersion>
 	<packaging>pom</packaging>
-	<version>1.0</version>
-	<dependencies>
 
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.8.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<java.version>12</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<log4j.version>2.11.2</log4j.version>
+	</properties>
+
+	<dependencies>
 	</dependencies>
+
 	<reporting>
 		<plugins>
 		</plugins>
 	</reporting>
+
 	<build>
 		<plugins>
-
-
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.springframework.boot</groupId> -->
+<!-- 				<artifactId>spring-boot-maven-plugin</artifactId> -->
+<!-- 			</plugin> -->
 		</plugins>
 	</build>
 
 	<modules>
 		<module>randonnees-entity</module>
 		<module>randonnees-dao</module>
-		<module>randonnees-business</module>
-		<module>randonnees-service</module>
+<!-- 		<module>randonnees-business</module> -->
+<!-- 		<module>randonnees-service</module> -->
 	</modules>
 
-	<properties>
-		<java.version>12</java.version>
-		<commons.lang.version>3.2.1</commons.lang.version>
-		<junit.version>4.11</junit.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+	<!-- =============================================================== -->
+	<!-- Gestion des dépendances -->
+	<!-- =============================================================== -->
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- ===== Modules ===== -->
+			<dependency>
+				<groupId>org.cedam.application.randonnees</groupId>
+				<artifactId>randonnees-entity</artifactId>
+				<version>1.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cedam.application.randonnees</groupId>
+				<artifactId>randonnees-dao</artifactId>
+				<version>1.0-SNAPSHOT</version>
+			</dependency>
+<!-- 			<dependency> -->
+<!-- 				<groupId>org.cedam.application.randonnees</groupId> -->
+<!-- 				<artifactId>randonnees-business</artifactId> -->
+<!-- 				<version>1.0-SNAPSHOT</version> -->
+<!-- 			</dependency> -->
+<!-- 			<dependency> -->
+<!-- 				<groupId>org.cedam.application.randonnees</groupId> -->
+<!-- 				<artifactId>randonnees-service</artifactId> -->
+<!-- 				<version>1.0-SNAPSHOT</version> -->
+<!-- 			</dependency> -->
+
+
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter</artifactId>
+				<version>2.0.0.RELEASE</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<version>2.0.0.RELEASE</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-logging</artifactId>
+					</exclusion>
+				</exclusions>
+				<scope>test</scope>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
 
 </project>

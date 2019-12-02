@@ -1,6 +1,6 @@
 package org.cedam.application.randonnees.service.controler;
 
-import org.cedam.application.randonnees.service.config.AppConfig;
+import org.cedam.application.randonnees.service.config.AppConfigService;
 import org.cedam.application.randonnees.service.controller.DayController;
 import org.junit.After;
 import org.junit.Assert;
@@ -13,7 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = AppConfig.class)
+@ContextConfiguration(classes = AppConfigService.class)
 @SpringBootTest
 public class DayControllerTest {
 
