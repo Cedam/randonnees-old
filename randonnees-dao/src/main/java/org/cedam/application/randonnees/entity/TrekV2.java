@@ -1,10 +1,15 @@
 package org.cedam.application.randonnees.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,8 +30,8 @@ public class TrekV2 {
 	@Column(name = "LOCATION", nullable = false, unique = false)
 	private String location;
 
-	// @OneToMany(cascade = CascadeType.ALL, mappedBy = "trek")
-	// private List<Day> days = new ArrayList<Day>();
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "trek")
+	private List<DayV2> days = new ArrayList<DayV2>();
 
 	public long getId() {
 		return id;
@@ -60,10 +65,12 @@ public class TrekV2 {
 		this.location = location;
 	}
 
-	/*
-	 * public List<Day> getDays() { return days; }
-	 * 
-	 * public void setDays(List<Day> days) { this.days = days; }
-	 */
+	public List<DayV2> getDays() {
+		return days;
+	}
+
+	public void setDays(List<DayV2> days) {
+		this.days = days;
+	}
 
 }

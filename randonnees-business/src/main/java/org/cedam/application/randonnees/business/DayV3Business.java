@@ -1,5 +1,6 @@
-package org.cedam.application.randonnees.businessV2;
+package org.cedam.application.randonnees.business;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -9,11 +10,27 @@ import org.cedam.application.randonnees.entity.DayV2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("dayV2Business")
-public class DayV2Business {
+@Service("dayV3Business")
+public class DayV3Business {
 	
 	@Autowired
 	private DayV2Dao dayV2Dao;
+	
+	public List<DayV2> getAll() {
+		List<DayV2> result = new ArrayList<DayV2>();
+		dayV2Dao.findAll().forEach(result::add);
+		return result;
+	}
+	
+	public DayV2 getById(Long id) {
+		return dayV2Dao.findById(id).get();
+	}
+	
+	public DayV2 save(DayV2 day) {
+		return dayV2Dao.save(day);
+	}
+	
+
 	
 	public boolean test() {
 		// Save a new customer
@@ -51,4 +68,6 @@ public class DayV2Business {
 		
 		return true;
 	}
+
+
 }

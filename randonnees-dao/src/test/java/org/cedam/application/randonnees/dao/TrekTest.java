@@ -1,9 +1,11 @@
 package org.cedam.application.randonnees.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.cedam.application.randonnees.dao.config.AppConfig;
+import org.cedam.application.randonnees.AppConfigDao;
+import org.cedam.application.randonnees.entity.DayV2;
 import org.cedam.application.randonnees.entity.TrekV2;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,13 +21,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = AppConfig.class)
+@ContextConfiguration(classes = AppConfigDao.class)
 @SpringBootTest
 //@Ignore
 public class TrekTest {
 
 	@Autowired
 	private TrekV2Dao object;
+	
+	@Autowired
+	private DayV2Dao dayDao;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -51,7 +56,16 @@ public class TrekTest {
 		trekV2.setLocation("location");
 		TrekV2 trekResult = object.save(trekV2);
 		Assert.assertTrue(trekResult!=null);
-		Assert.assertTrue(trekResult.getId()>0);	 
+		Assert.assertTrue(trekResult.getId()>0);	
+		
+		DayV2 day = dayDao.findAll().iterator().next();
+		
+		List<DayV2> listDays = new ArrayList<DayV2>();
+		listDays.add(day);
+		trekV2.setDays(listDays);
+		trekResult = object.save(trekV2);
+		Assert.assertTrue(trekResult!=null);
+		Assert.assertTrue(trekResult.getId()>0);
 	}
 
 	@Test

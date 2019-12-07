@@ -1,10 +1,10 @@
-package org.cedam.application.randonnees.business;
+package org.cedam.application.old;
 
 import java.util.List;
 
 import org.cedam.application.randonnees.entity.Day;
 
-public interface DayBO {
+public interface _DayBO {
 
 	Day getById(Long id);
 

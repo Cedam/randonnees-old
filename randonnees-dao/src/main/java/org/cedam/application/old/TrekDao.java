@@ -1,4 +1,4 @@
-package org.cedam.application.randonnees.dao;
+package org.cedam.application.old;
 
 import java.util.List;
 

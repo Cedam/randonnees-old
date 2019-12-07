@@ -2,14 +2,13 @@ package org.cedam.application.randonnees.business;
 
 import java.util.List;
 
-import org.cedam.application.randonnees.business.config.AppConfigBusiness;
-import org.cedam.application.randonnees.entity.Day;
+import org.cedam.application.randonnees.AppConfigBusiness;
+import org.cedam.application.randonnees.entity.DayV2;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +20,10 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = AppConfigBusiness.class)
 @SpringBootTest
-@Ignore
-public class DayBOTest {
+public class DayV3BOTest {
 
 	@Autowired
-	private DayBO object;
+	private DayV3Business object;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -44,54 +42,54 @@ public class DayBOTest {
 	}
 
 	@Test
+	@Transactional
 	public void testGetById() {
-		List<Day> listeDays = object.listDays();
-		Day day = object.getById(listeDays.get(0).getId());
+		List<DayV2> listeDays = object.getAll();
+		DayV2 day = object.getById(listeDays.get(0).getId());
 		Assert.assertNotNull(day);
 		Assert.assertEquals(listeDays.get(0).getId(), day.getId());
 
-		Day day2 = object.getById(listeDays.get(0).getId() + 1);
+		DayV2 day2 = object.getById(listeDays.get(0).getId() + 1);
 		Assert.assertNotNull(day2);
 		Assert.assertNotEquals(listeDays.get(0).getId(), day2.getId());
 	}
 
-	
 	@Test
+	@Transactional
 	public void testListDays() {
-		List<Day> listDays = object.listDays();
+		List<DayV2> listDays = object.getAll();
 		Assert.assertNotNull(listDays);
 	}
 
-	
 	@Test
+	@Transactional
 	public void testInsert() {
-		int numberBefore = object.listDays().size();
-		Day dayA = new Day();
+		int numberBefore = object.getAll().size();
+		DayV2 dayA = new DayV2();
 		dayA.setNumber("testA");
-		object.insert(dayA);
-		Assert.assertEquals(++numberBefore, object.listDays().size());
+		object.save(dayA);
+		Assert.assertEquals(++numberBefore, object.getAll().size());
 	}
 
 	@Test
 	@Transactional
 	public void testUpdate() {
-		int numberBefore = object.listDays().size();
-		
-		//Persistant
+		int numberBefore = object.getAll().size();
+
+		// Persistant
 		double valeurNumberA = Math.random();
-		Day dayA = object.listDays().get(0);
+		DayV2 dayA = object.getAll().get(0);
 		dayA.setNumber(String.valueOf(valeurNumberA));
-		long id = object.update(dayA);
-		Assert.assertEquals(String.valueOf(valeurNumberA), object.getById(id).getNumber());
-	
-		//Détaché
+		DayV2 daySave = object.save(dayA);
+		Assert.assertEquals(String.valueOf(valeurNumberA), object.getById(daySave.getId()).getNumber());
+
+		// Détaché
 		double valeurNumberB = Math.random();
-		Day dayB = new Day();
+		DayV2 dayB = new DayV2();
 		dayB.setId(2);
 		dayB.setNumber(String.valueOf(valeurNumberB));
-		long idB = object.update(dayB);
-		Assert.assertEquals(String.valueOf(valeurNumberB), object.getById(idB).getNumber());
-		
-		Assert.assertEquals(numberBefore, object.listDays().size());
+		daySave = object.save(dayB);
+		Assert.assertEquals(String.valueOf(valeurNumberB), object.getById(daySave.getId()).getNumber());
+		Assert.assertEquals(numberBefore, object.getAll().size());
 	}
 }

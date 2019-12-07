@@ -1,4 +1,4 @@
-package org.cedam.application.randonnees.dao.config;
+package org.cedam.application.randonnees;
 
 import javax.persistence.EntityManagerFactory;
 
@@ -15,7 +15,7 @@ import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 @EnableJpaRepositories(basePackages = {"org.cedam.application.randonnees"})
 @ComponentScan(basePackages = {"org.cedam.application.randonnees"})
 //@ComponentScan(basePackages = {"org.cedam.application.randonnees.dao", "org.cedam.application.randonnees.entity"})
-public class AppConfig {
+public class AppConfigDao {
 	
 	@Bean
 	public LocalEntityManagerFactoryBean entityManagerFactory() {

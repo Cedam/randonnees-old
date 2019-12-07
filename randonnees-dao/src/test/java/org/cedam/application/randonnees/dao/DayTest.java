@@ -2,10 +2,8 @@ package org.cedam.application.randonnees.dao;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
 
-import org.cedam.application.randonnees.businessV2.DayV2Business;
-import org.cedam.application.randonnees.dao.config.AppConfig;
+import org.cedam.application.randonnees.AppConfigDao;
 import org.cedam.application.randonnees.entity.DayV2;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -21,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = AppConfig.class)
+@ContextConfiguration(classes = AppConfigDao.class)
 @SpringBootTest
 //@Ignore
 public class DayTest {
@@ -49,27 +47,23 @@ public class DayTest {
 	@Transactional
 	public void SaveTest() {
 		DayV2 newDay = new DayV2();
-		newDay.setNumber("number");		
-		DayV2 trekResult = object.save(newDay);
-		Assert.assertTrue(trekResult!=null);
-		Assert.assertTrue(trekResult.getId()>0);
+		newDay.setNumber("numberTest");		
+		DayV2 dayResult = object.save(newDay);
+		Assert.assertTrue(dayResult!=null);
+		Assert.assertTrue(dayResult.getId()>0);
 	}
 
 	@Test
 	@Transactional
 	public void FindTest() {
-		//Insert
-		DayV2 newDay = new DayV2();
-		newDay.setNumber("number");		
-		Object obj = object.save(newDay);
-		
+	
 		// Find a customer by ID
 		Optional<DayV2> result = object.findById(1L);
 		Assert.assertTrue(!result.isEmpty());	 
 		Assert.assertTrue(result.isPresent());	 
 		
 		// Find customers by last name
-		List<DayV2> result2 = object.findByNumber("number");
+		List<DayV2> result2 = object.findByNumber("numberTest");
 		Assert.assertTrue(!result2.isEmpty());	 
 		Assert.assertTrue(result2.size()>0);		
 		

@@ -2,14 +2,13 @@ package org.cedam.application.randonnees.business;
 
 import java.util.List;
 
-import org.cedam.application.randonnees.business.config.AppConfigBusiness;
-import org.cedam.application.randonnees.entity.Trek;
+import org.cedam.application.randonnees.AppConfigBusiness;
+import org.cedam.application.randonnees.entity.TrekV2;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +20,10 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = AppConfigBusiness.class)
 @SpringBootTest
-public class TrekBOTest {
+public class TrekV3BOTest {
 
 	@Autowired
-	private TrekBO object;
+	private TrekV3Business object;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -42,68 +41,56 @@ public class TrekBOTest {
 	public void tearDown() throws Exception {
 	}
 
-	
 	@Test
 	@Transactional
 	public void testGetById() {
-		object.getById((long) 0);
-//		List<Trek> listeTreks = object.listTreks();
-//		Trek trek = object.getById(listeTreks.get(0).getId());
-//		Assert.assertNotNull(trek);
-//		Assert.assertEquals(listeTreks.get(0).getId(), trek.getId());
-//		
-//		Trek trek2 = object.getById(listeTreks.get(0).getId()+1);
-//		Assert.assertNotNull(trek2);
-//		Assert.assertNotEquals(listeTreks.get(0).getId(), trek2.getId());
-		
-		/*for (Day day : trek.getDays()) {
-			Assert.assertNotNull(day);
-		}*/
+		List<TrekV2> listeTreks = object.getAll();
+		TrekV2 day = object.getById(listeTreks.get(0).getId());
+		Assert.assertNotNull(day);
+		Assert.assertEquals(listeTreks.get(0).getId(), day.getId());
+
+		TrekV2 day2 = object.getById(listeTreks.get(0).getId() + 1);
+		Assert.assertNotNull(day2);
+		Assert.assertNotEquals(listeTreks.get(0).getId(), day2.getId());
 	}
-	
-	
+
 	@Test
 	@Transactional
-	@Ignore
 	public void testListTreks() {
-		List<Trek> listTreks = object.listTreks();
+		List<TrekV2> listTreks = object.getAll();
 		Assert.assertNotNull(listTreks);
 	}
 
-	
 	@Test
 	@Transactional
-	@Ignore
-	public void testAdd() {
-		int numberBefore = object.listTreks().size();
-		Trek trekA = new Trek();
+	public void testInsert() {
+		int numberBefore = object.getAll().size();
+		TrekV2 trekA = new TrekV2();
 		trekA.setName("testA");
-		object.insert(trekA);
-		Assert.assertEquals(++numberBefore, object.listTreks().size());
+		object.save(trekA);
+		Assert.assertEquals(++numberBefore, object.getAll().size());
 	}
 
 	@Test
 	@Transactional
-	@Ignore
 	public void testUpdate() {
-		int numberBefore = object.listTreks().size();
-		
-		//Persistant
+		int numberBefore = object.getAll().size();
+
+		// Persistant
 		double valeurNumberA = Math.random();
-		Trek trekA = object.listTreks().get(0);
+		TrekV2 trekA = object.getAll().get(0);
 		trekA.setName(String.valueOf(valeurNumberA));
-		long id = object.update(trekA);
-		Assert.assertEquals(String.valueOf(valeurNumberA), object.getById(id).getName());
-	
-		//Détaché
+		TrekV2 trekSave = object.save(trekA);
+		Assert.assertEquals(String.valueOf(valeurNumberA), object.getById(trekSave.getId()).getName());
+
+		// Détaché
 		double valeurNumberB = Math.random();
-		Trek trekB = new Trek();
+		TrekV2 trekB = new TrekV2();
 		trekB.setId(2);
 		trekB.setName(String.valueOf(valeurNumberB));
-		long idB = object.update(trekB);
-		Assert.assertEquals(String.valueOf(valeurNumberB), object.getById(idB).getName());
-		
-		Assert.assertEquals(numberBefore, object.listTreks().size());
+		trekSave = object.save(trekB);
+		Assert.assertEquals(String.valueOf(valeurNumberB), object.getById(trekSave.getId()).getName());
+		Assert.assertEquals(numberBefore, object.getAll().size());
 	}
 
 }
