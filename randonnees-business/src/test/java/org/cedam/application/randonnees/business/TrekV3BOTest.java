@@ -66,7 +66,8 @@ public class TrekV3BOTest {
 	public void testInsert() {
 		int numberBefore = object.getAll().size();
 		TrekV2 trekA = new TrekV2();
-		trekA.setName("testA");
+		trekA.setName(ConstanteTest.TREK_TEST_NAME_1);
+		trekA.setLocation(ConstanteTest.TREK_TEST_LOCATION_1);
 		object.save(trekA);
 		Assert.assertEquals(++numberBefore, object.getAll().size());
 	}
@@ -86,8 +87,9 @@ public class TrekV3BOTest {
 		// Détaché
 		double valeurNumberB = Math.random();
 		TrekV2 trekB = new TrekV2();
-		trekB.setId(2);
+		trekB.setId(ConstanteTest.TREK_TEST_ID_2);
 		trekB.setName(String.valueOf(valeurNumberB));
+		trekB.setLocation(ConstanteTest.TREK_TEST_LOCATION_2);
 		trekSave = object.save(trekB);
 		Assert.assertEquals(String.valueOf(valeurNumberB), object.getById(trekSave.getId()).getName());
 		Assert.assertEquals(numberBefore, object.getAll().size());

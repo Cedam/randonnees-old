@@ -43,7 +43,7 @@
 	<modules>
 		<module>randonnees-entity</module>
 		<module>randonnees-dao</module>
-<!-- 		<module>randonnees-business</module> -->
+		<module>randonnees-business</module>
 <!-- 		<module>randonnees-service</module> -->
 	</modules>
 

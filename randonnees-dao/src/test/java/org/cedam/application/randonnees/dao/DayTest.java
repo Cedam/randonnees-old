@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 //@Ignore
 public class DayTest {
 	
+	
 	@Autowired
 	private DayV2Dao object;
 	
@@ -46,9 +47,7 @@ public class DayTest {
 	@Test
 	@Transactional
 	public void SaveTest() {
-		DayV2 newDay = new DayV2();
-		newDay.setNumber("numberTest");		
-		DayV2 dayResult = object.save(newDay);
+		DayV2 dayResult = object.save(ConstanteTest.getDay());
 		Assert.assertTrue(dayResult!=null);
 		Assert.assertTrue(dayResult.getId()>0);
 	}
@@ -58,12 +57,12 @@ public class DayTest {
 	public void FindTest() {
 	
 		// Find a customer by ID
-		Optional<DayV2> result = object.findById(1L);
+		Optional<DayV2> result = object.findById(ConstanteTest.DAY_TEST_ID_1);
 		Assert.assertTrue(!result.isEmpty());	 
 		Assert.assertTrue(result.isPresent());	 
 		
 		// Find customers by last name
-		List<DayV2> result2 = object.findByNumber("numberTest");
+		List<DayV2> result2 = object.findByNumber(ConstanteTest.DAY_TEST_NUMBER_1);
 		Assert.assertTrue(!result2.isEmpty());	 
 		Assert.assertTrue(result2.size()>0);		
 		

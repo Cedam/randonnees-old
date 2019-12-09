@@ -65,9 +65,7 @@ public class DayV3BOTest {
 	@Transactional
 	public void testInsert() {
 		int numberBefore = object.getAll().size();
-		DayV2 dayA = new DayV2();
-		dayA.setNumber("testA");
-		object.save(dayA);
+		object.save(ConstanteTest.getDay());
 		Assert.assertEquals(++numberBefore, object.getAll().size());
 	}
 
@@ -86,8 +84,9 @@ public class DayV3BOTest {
 		// Détaché
 		double valeurNumberB = Math.random();
 		DayV2 dayB = new DayV2();
-		dayB.setId(2);
+		dayB.setId(ConstanteTest.DAY_TEST_ID_2);
 		dayB.setNumber(String.valueOf(valeurNumberB));
+		dayB.setTrek(ConstanteTest.getTrek());
 		daySave = object.save(dayB);
 		Assert.assertEquals(String.valueOf(valeurNumberB), object.getById(daySave.getId()).getNumber());
 		Assert.assertEquals(numberBefore, object.getAll().size());
