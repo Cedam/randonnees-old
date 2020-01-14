@@ -1,6 +1,7 @@
 package org.cedam.application.randonnees.service.controler;
 
-import org.cedam.application.randonnees.service.config.AppConfigService;
+import org.cedam.application.randonnees.AppConfigService;
+import org.cedam.application.randonnees.entityV6.Trek;
 import org.cedam.application.randonnees.service.controller.TrekController;
 import org.junit.After;
 import org.junit.Assert;
@@ -25,6 +26,27 @@ public class TrekControllerTest {
 	
 	@After
 	public void tearDown() throws Exception {}
+	
+	@Test
+	public void getAllTest() {
+		Assert.assertNotNull(trekController.getAll());
+	}
+
+	@Test
+	public void getByIdTest() {
+		int idTrek = 0;
+		Trek trek = trekController.getById(idTrek);
+		Assert.assertEquals(idTrek, trek.getId());
+	}
+
+	@Test
+	public void save() {
+		int idTrek = 0;
+		Trek trek = new Trek();
+		trek.setId(idTrek);
+		trek = trekController.save(trek);
+		Assert.assertEquals(idTrek, trek.getId());
+	}
 	
 	@Test
 	public void testTest() {

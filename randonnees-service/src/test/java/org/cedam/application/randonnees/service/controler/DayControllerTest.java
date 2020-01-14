@@ -1,6 +1,7 @@
 package org.cedam.application.randonnees.service.controler;
 
-import org.cedam.application.randonnees.service.config.AppConfigService;
+import org.cedam.application.randonnees.AppConfigService;
+import org.cedam.application.randonnees.entityV6.Day;
 import org.cedam.application.randonnees.service.controller.DayController;
 import org.junit.After;
 import org.junit.Assert;
@@ -27,14 +28,28 @@ public class DayControllerTest {
 	public void tearDown() throws Exception {}
 	
 	@Test
+	public void getAllTest() {
+		Assert.assertNotNull(dayController.getAll());
+	}
+
+	@Test
+	public void getByIdTest() {
+		int idDay = 0;
+		Day day = dayController.getById(idDay);
+		Assert.assertEquals(idDay, day.getId());
+	}
+
+	@Test
+	public void save() {
+		int idDay = 0;
+		Day day = new Day();
+		day.setId(idDay);
+		day = dayController.save(day);
+		Assert.assertEquals(idDay, day.getId());
+	}
+
+	@Test
 	public void testTest() {
-	    /*String payload = "{ \"products\": [{ \"name\": \"Mon produit\" }]}";
-	    MockHttpServletRequestBuilder req = post(SERVICE_URI).contentType(MediaType.APPLICATION_JSON)
-	            .accept(MediaType.APPLICATION_JSON_UTF8)
-	            .content(payload);
-	    this.mockMvc.perform(req).andExpect(status().isOk());*/
-		
-		//Assert.("Futur application randonnées", accueilController.welcome());
 		Assert.assertEquals("Futur application randonnées : day", dayController.test());
 	}
 

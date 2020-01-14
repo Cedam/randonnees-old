@@ -1,4 +1,4 @@
-package org.cedam.application.randonnees.entity;
+package org.cedam.application.randonnees.entityV6;
 
 //import javax.persistence.Column;
 //import javax.persistence.Entity;
